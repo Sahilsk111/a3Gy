@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ultimate Gym Center</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+        }
+        header {
+            background: linear-gradient(90deg, #23272F, #3A416F 90%);
+            color: #fff;
+            padding: 36px 20px 30px 20px;
+            text-align: center;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 16px rgba(50,60,120,0.13);
+            animation: fadeDown 1.1s;
+        }
+        @keyframes fadeDown {
+            from { opacity: 0; transform: translateY(-40px);}
+            to   { opacity: 1; transform: translateY(0);}
+        }
+        nav {
+            background: #23272F;
+            display: flex;
+            justify-content: center;
+            gap: 36px;
+            padding: 16px 0;
+            box-shadow: 0 2px 12px rgba(50,60,120,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            animation: fadeDown 1.2s;
+        }
+        nav a {
+            color: #FEDC56;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.13em;
+            transition: color 0.24s, transform 0.24s;
+        }
+        nav a:hover {
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .ad-section {
+            background: linear-gradient(90deg,#FEDC56 50%, #fff 100%);
+            color: #23272F;
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+            font-size: 1.3em;
+            margin: 25px auto;
+            width: 82%;
+            box-shadow: 0 6px 32px rgba(150,100,10,0.12);
+            position: relative;
+            animation: popUp 0.9s ease-out;
+        }
+        @keyframes popUp {
+            0%   {transform: scale(0.7); opacity: 0;}
+            100% {transform: scale(1); opacity: 1;}
+        }
+        .ad-section::after {
+            content: '';
+            display: inline-block;
+            background: radial-gradient(circle,#F8ECDC 40%, transparent 80%);
+            width: 360px; height: 65px;
+            position: absolute; left: 55%; top: 80%;
+            z-index: -1;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 38px;
+            margin: 40px 0;
+            animation: fadeFeatures 1.2s;
+        }
+        @keyframes fadeFeatures {
+            0%   {opacity:0; transform: translateY(60px);}
+            100% {opacity:1; transform: translateY(0);}
+        }
+        .feature-box {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px 18px;
+            box-shadow: 0 4px 18px rgba(30,50,130,0.09);
+            width: 255px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            transition: transform 0.21s, box-shadow 0.21s;
+            animation: bounceIn 1s;
+        }
+        @keyframes bounceIn {
+            0% {transform: scale(0.8);}
+            40%{transform: scale(1.08);}
+            70%{transform: scale(0.96);}
+            100%{transform: scale(1);}
+        }
+        .feature-box:hover {
+            transform: translateY(-10px) scale(1.06);
+            box-shadow: 0 10px 32px rgba(60,40,120,0.17);
+        }
+        .feature-box h3 {
+            margin-bottom: 13px;
+            color: #1A202C;
+            font-size: 1.15em;
+        }
+        .feature-box p {
+            line-height: 1.6;
+            color: #3A416F;
+        }
+        /* Query Form Styles */
+        .query-form-section {
+            max-width: 450px;
+            margin: 40px auto 0 auto;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(30,50,130,0.13);
+            padding: 30px 28px;
+            text-align: center;
+            animation: slideInForm 1.2s;
+        }
+        @keyframes slideInForm {
+            from { opacity: 0; transform: translateY(60px);}
+            to   { opacity: 1; transform: translateY(0);}
+        }
+        .query-form-section h2 {
+            color: #23272F;
+            margin-bottom: 18px;
+        }
+        form label {
+            display: block;
+            margin: 14px 0 6px 0;
+            font-weight: 600;
+            color: #3A416F;
+            letter-spacing: 0.5px;
+            text-align: left;
+        }
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #cedef0;
+            margin-bottom: 18px;
+            font-size: 1em;
+            background: #f7f7ff;
+            transition: border-color 0.2s;
+        }
+        form input:focus,
+        form textarea:focus {
+            border-color: #FEDC56;
+            outline: none;
+        }
+        form button {
+            background: linear-gradient(90deg,#FEDC56 60%, #ebc23a 100%);
+            color: #23272F;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 34px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1.1em;
+            box-shadow: 0 2px 12px rgba(150,100,10,0.09);
+            transition: background 0.22s, transform 0.17s;
+        }
+        form button:hover {
+            background: linear-gradient(90deg,#fec933 45%, #FEDC56 100%);
+            transform: scale(1.05);
+        }
+        .form-success {
+            color: #0E835B;
+            background: #e1ffd7;
+            border-radius: 8px;
+            padding: 8px 18px;
+            margin-top: 10px;
+            animation: fadeDown 0.9s;
+        }
+        footer {
+            background: linear-gradient(90deg, #23272F 50%, #3A416F 100%);
+            color: #fff;
+            padding: 34px 10px 24px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 38px;
+            letter-spacing: 0.5px;
+            animation: fadeUp 1.25s;
+        }
+        @keyframes fadeUp {
+            from {opacity:0; transform:translateY(40px);}
+            to {opacity:1; transform:translateY(0);}
+        }
+        .support-section {
+            margin-bottom: 20px;
+            text-align: center;
+            animation: fadeDown 1.3s;
+        }
+        .support-section a {
+            color: #FEDC56;
+            text-decoration: underline;
+            transition: color 0.23s;
+        }
+        .support-section a:hover {
+            color: #fff;
+        }
+        .contact-info {
+            font-size: 1.13em;
+            text-align: center;
+            animation: fadeDown 1.3s;
+        }
+        .contact-info strong { color:#FEDC56;}
+        footer p {
+            margin-top:16px;
+            font-size:0.90em;
+            color: #cedef0;
+        }
+        .svg-gym {
+            display: block;
+            margin: 0 auto 18px auto;
+            width: 64px;
+            height: 64px;
+            animation: rotateBarbell 3s infinite linear;
+        }
+        @keyframes rotateBarbell {
+            0% {transform: rotate(-25deg);}
+            8% {transform: rotate(5deg);}
+            17% {transform: rotate(-12deg);}
+            25% {transform: rotate(0deg);}
+            100% {transform: rotate(-25deg);}
+        }
+        @media (max-width:660px) {
+            .features { flex-direction: column; align-items: center; }
+            .feature-box { width: 90%; }
+            .ad-section { width: 97%; font-size: 1.05em;}
+            .query-form-section {width:96%;}
+        }
+    </style>
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const form = document.getElementById('queryForm');
+            const successMsg = document.getElementById('formSuccess');
+            successMsg.innerText = "Thank you! Your query has been submitted.";
+            form.reset();
+            setTimeout(() => { successMsg.innerText = ""; }, 4000);
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <svg class="svg-gym" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+            <circle cx="32" cy="32" r="18" stroke="#FEDC56" stroke-width="2" fill="none"/>
+            <rect x="24" y="28" width="16" height="8" rx="2" fill="#FEDC56"/>
+            <rect x="12" y="31" width="8" height="3" rx="1.5" fill="#FEDC56"/>
+            <rect x="44" y="31" width="8" height="3" rx="1.5" fill="#FEDC56"/>
+        </svg>
+        <h1>Ultimate Gym Center</h1>
+        <p>Fitness. Strength. Wellness. All Under One Roof.</p>
+    </header>
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Programs</a>
+        <a href="#">Trainers</a>
+        <a href="#">Membership</a>
+        <a href="#">Gallery</a>
+    </nav>
+    <section class="ad-section">
+        <strong>🎉 Special Offer: Join Ultimate Gym and Get <span style="color: #C32C2C;">20% Off</span> Your First Month!</strong>
+        <br>Other essentials: Fitness accessories available at discounted prices for new members!
+    </section>
+    <section class="features">
+        <div class="feature-box">
+            <h3>Modern Equipment</h3>
+            <p>State-of-the-art fitness machines and free weights for all training levels.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Certified Trainers</h3>
+            <p>Personalized training plans and expert guidance from certified professionals.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Group Classes</h3>
+            <p>Yoga, Zumba, HIIT, and more—something for everyone!</p>
+        </div>
+        <div class="feature-box">
+            <h3>Diet & Nutrition</h3>
+            <p>Customized dietary recommendations to complement your workouts.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Membership Options</h3>
+            <p>Flexible monthly, quarterly, and annual membership packages for all budgets.</p>
+        </div>
+    </section>
+    <!-- Query Form Section -->
+    <section class="query-form-section">
+        <h2>Have a Query?</h2>
+        <form id="queryForm" onsubmit="handleSubmit(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Your Name">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Your Email">
+            
+            <label for="query">Your Query:</label>
+            <textarea id="query" name="query" rows="4" required placeholder="Type your question or query here"></textarea>
+            
+            <button type="submit">Submit Query</button>
+            <div id="formSuccess" class="form-success"></div>
+        </form>
+    </section>
+    <footer>
+        <div class="support-section">
+            <h2>Help & Support</h2>
+            <p>
+                Need assistance? We’re here for you! <br>
+                Check our <a href="#">FAQ</a> or reach out directly.
+            </p>
+        </div>
+        <div class="contact-info">
+            <strong>Contact Us:</strong><br>
+            📞 +91 98765 43210 <br>
+            ✉️ info@ultimategym.com <br>
+            📍 123, Fit Street, Downtown, YourCity
+        </div>
+        <p>© 2025 Ultimate Gym Center. All rights reserved.</p>
+    </footer>
+</body>
+</html>
